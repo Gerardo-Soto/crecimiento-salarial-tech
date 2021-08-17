@@ -23,9 +23,10 @@ function onclickCalcularSalarioAnual() {
     let strSalary = salarioAnual.toString();
     let entero_decimal = strSalary.split('.');
     
-    let text = document.createTextNode(" $ "+ numberWithCommas(entero_decimal[0]) + "." + entero_decimal[1]);
+    let text = document.createTextNode("Tu salario anual es de:  $ "+ numberWithCommas(entero_decimal[0]) + "." + entero_decimal[1]);
     //console.log(typeof(entero_decimal));
     //console.log(entero_decimal);
+    outputSalarioAnual.innerText = ''
     outputSalarioAnual.appendChild(text);
 }
 
@@ -58,13 +59,17 @@ function onclickCalcularCrecimientoSalarial() {
     let text_maximumSalary = document.createTextNode(" en " + years.value +" años es de: $ "+ parseFloat(maximumSalary).toFixed(2));
 */
 
-    let text_minimumSalary = document.createTextNode(" en " + years.value + " años es de: $ " + numberWithCommas(splitMinimumSalary[0]) + "." + splitMinimumSalary[1]);
-    let text_averageSalary = document.createTextNode(" en " + years.value + " años es de: $ " + numberWithCommas(splitAverageSalary[0]) + "." + splitAverageSalary[1]);
-    let text_maximumSalary = document.createTextNode(" en " + years.value + " años es de: $ " + numberWithCommas(splitMaximumSalary[0]) + "." + splitMaximumSalary[1]);
+    let text_minimumSalary = document.createTextNode("Crecimiento salarial mínimo en " + years.value + " años es de: $ " + numberWithCommas(splitMinimumSalary[0]) + "." + splitMinimumSalary[1]);
+    let text_averageSalary = document.createTextNode("Crecimiento salarial promedio en " + years.value + " años es de: $ " + numberWithCommas(splitAverageSalary[0]) + "." + splitAverageSalary[1]);
+    let text_maximumSalary = document.createTextNode("Crecimiento salarial máximo en " + years.value + " años es de: $ " + numberWithCommas(splitMaximumSalary[0]) + "." + splitMaximumSalary[1]);
 
     const outputSalarioMinimo = document.getElementById("salarialMinimo");
     const outputSalarioPromedio = document.getElementById("salarialPromedio");
     const outputSalarioMaximo = document.getElementById("salarialMaximo");
+
+    outputSalarioMinimo.innerText = '';
+    outputSalarioPromedio.innerText = '';
+    outputSalarioMaximo.innerText = '';
     
     outputSalarioMinimo.appendChild(text_minimumSalary);
     outputSalarioPromedio.appendChild(text_averageSalary);
