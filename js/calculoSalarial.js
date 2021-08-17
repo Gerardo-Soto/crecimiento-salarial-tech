@@ -16,11 +16,16 @@ startJS();
 
 function onclickCalcularSalarioAnual() {
     const salarioMensual = document.getElementById("input__salario-mensual");
-    let salarioAnual = Number(salarioMensual.value) * 12;
+    let salarioAnual = (parseFloat(salarioMensual.value) * 12).toFixed(2);
+    //console.log(salarioAnual);
     const outputSalarioAnual = document.getElementById("returnSalarioAnual");
 
-    let text = document.createTextNode(" $ "+ salarioAnual);
-
+    let strSalary = salarioAnual.toString();
+    let entero_decimal = strSalary.split('.');
+    
+    let text = document.createTextNode(" $ "+ numberWithCommas(entero_decimal[0]) + "." + entero_decimal[1]);
+    //console.log(typeof(entero_decimal));
+    //console.log(entero_decimal);
     outputSalarioAnual.appendChild(text);
 }
 
@@ -40,9 +45,22 @@ function onclickCalcularCrecimientoSalarial() {
       averageSalary = (minimumSalary + maximumSalary) / 2;
     }
 
-    let text_minimumSalary = document.createTextNode(" en " + years.value +" años es de: $ "+ minimumSalary);
-    let text_averageSalary = document.createTextNode(" en " + years.value +" años es de:$ "+ averageSalary);
-    let text_maximumSalary = document.createTextNode(" en " + years.value +" años es de:$ "+ maximumSalary);
+    let strMinimumSalary = minimumSalary.toFixed(2).toString();
+    let strAverageSalary = averageSalary.toFixed(2).toString();
+    let strMaximumSalary = maximumSalary.toFixed(2).toString();
+
+    let splitMinimumSalary = strMinimumSalary.split('.');
+    let splitAverageSalary = strAverageSalary.split('.');
+    let splitMaximumSalary = strMaximumSalary.split('.');
+/*
+    let text_minimumSalary = document.createTextNode(" en " + years.value +" años es de: $ "+ parseFloat(minimumSalary).toFixed(2));
+    let text_averageSalary = document.createTextNode(" en " + years.value +" años es de: $ "+ parseFloat(averageSalary).toFixed(2));
+    let text_maximumSalary = document.createTextNode(" en " + years.value +" años es de: $ "+ parseFloat(maximumSalary).toFixed(2));
+*/
+
+    let text_minimumSalary = document.createTextNode(" en " + years.value + " años es de: $ " + numberWithCommas(splitMinimumSalary[0]) + "." + splitMinimumSalary[1]);
+    let text_averageSalary = document.createTextNode(" en " + years.value + " años es de: $ " + numberWithCommas(splitAverageSalary[0]) + "." + splitAverageSalary[1]);
+    let text_maximumSalary = document.createTextNode(" en " + years.value + " años es de: $ " + numberWithCommas(splitMaximumSalary[0]) + "." + splitMaximumSalary[1]);
 
     const outputSalarioMinimo = document.getElementById("salarialMinimo");
     const outputSalarioPromedio = document.getElementById("salarialPromedio");
@@ -51,4 +69,8 @@ function onclickCalcularCrecimientoSalarial() {
     outputSalarioMinimo.appendChild(text_minimumSalary);
     outputSalarioPromedio.appendChild(text_averageSalary);
     outputSalarioMaximo.appendChild(text_maximumSalary);
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
