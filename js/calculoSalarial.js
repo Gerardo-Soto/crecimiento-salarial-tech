@@ -27,8 +27,8 @@ function onclickCalcularSalarioAnual() {
 // funcion para calcular el crecimiento salarial mediante el salario anual actual del usuario y los años a calcular
 
 function onclickCalcularCrecimientoSalarial() {
-    const salarioAnual = document.getElementById("");
-    const years = document.getElementById("");
+    const salarioAnual = document.getElementById("input__salario-anual");
+    const years = document.getElementById("input__years");
     
     let minimumSalary = Number(salarioAnual.value);
     let averageSalary = 0
@@ -40,5 +40,15 @@ function onclickCalcularCrecimientoSalarial() {
       averageSalary = (minimumSalary + maximumSalary) / 2;
     }
 
-    let text_minimumSalary = document.createTextNode(" $ "+ minimumSalary);
+    let text_minimumSalary = document.createTextNode(" en " + years.value +" años es de: $ "+ minimumSalary);
+    let text_averageSalary = document.createTextNode(" en " + years.value +" años es de:$ "+ averageSalary);
+    let text_maximumSalary = document.createTextNode(" en " + years.value +" años es de:$ "+ maximumSalary);
+
+    const outputSalarioMinimo = document.getElementById("salarialMinimo");
+    const outputSalarioPromedio = document.getElementById("salarialPromedio");
+    const outputSalarioMaximo = document.getElementById("salarialMaximo");
+    
+    outputSalarioMinimo.appendChild(text_minimumSalary);
+    outputSalarioPromedio.appendChild(text_averageSalary);
+    outputSalarioMaximo.appendChild(text_maximumSalary);
 }
